@@ -11,6 +11,15 @@ An proxy worker for using ollama in cursor
 
 This is a proxy worker for using ollama in cursor. It is a simple server that
 forwards requests to the ollama server and returns the response.
+这个项目的作用是将 Cursor 编辑器原本调用 OpenAI API 的请求，通过一个代理服务器（curxy）转发到本地运行的 Ollama 服务器，从而实现使用 Ollama 替代 OpenAI 提供语言模型服务。
+
+具体来说，Cursor 编辑器在默认情况下会将请求发送到官方的 Cursor 服务器，而该服务器会进一步将请求转发到 OpenAI 的 API。通过使用这个代理服务器（curxy），可以绕过官方的 Cursor 服务器，直接将请求转发到本地运行的 Ollama 服务器，从而实现以下功能：
+
+1. **使用本地的 Ollama 模型**：用户可以在本地运行 Ollama，并通过这个代理服务器使用自己的模型，而不需要依赖 OpenAI 的远程服务。
+2. **保护隐私和数据安全**：由于请求被转发到本地服务器，用户的数据不会离开本地网络，从而提高了数据的安全性和隐私性。
+3. **降低成本**：如果用户使用自己的 Ollama 模型，可以避免使用 OpenAI API 产生的费用。
+
+通过设置 `OPENAI_API_KEY` 环境变量，还可以对代理服务器的访问进行限制，增加安全性。
 
 ## Why do you need this?
 
